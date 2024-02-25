@@ -3,44 +3,32 @@
 {% block title %}Contact{% endblock %}
 
 {% block body %}
-    <h1>Contact</h1>
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Show Contact</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="{{ path('app_contact_index') }}">
+                    View All Contacts
+                </a>
+                <a class="btn btn-outline-success" href="{{ path('app_contact_edit', {'id': contact.id}) }}">
+                    Edit
+                </a>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ contact.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ contact.name }}</td>
-            </tr>
-            <tr>
-                <th>PhoneNumber</th>
-                <td>{{ contact.phoneNumber }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ contact.email }}</td>
-            </tr>
-            <tr>
-                <th>PhotoFilename</th>
-                <td>{{ contact.photoFilename }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ contact.createdAt ? contact.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ contact.updatedAt ? contact.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_contact_index') }}">back to list</a>
-
-    <a href="{{ path('app_contact_edit', {'id': contact.id}) }}">edit</a>
-
-    {{ include('contact/_delete_form.html.twig') }}
+            </div>
+            <div class="card-body">
+                <b class="text-muted">Name:</b>
+                <p>{{ contact.name }}</p>
+                <b class="text-muted">Phone number:</b>
+                <p>{{ contact.phoneNumber }}</p>
+                <b class="text-muted">Email:</b>
+                <p>{{ contact.email }}</p>
+                <b class="text-muted">Other:</b>
+                <p>{{ contact.other }}</p>
+                <b class="text-muted">Date Created:</b>
+                <p>{{ contact.createdAt ? contact.createdAt|date('Y-m-d H:i:s') : '' }}</p>
+                <b class="text-muted">Date Updated:</b>
+                <p>{{ contact.updatedAt ? contact.updatedAt|date('Y-m-d H:i:s') : '' }}</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}

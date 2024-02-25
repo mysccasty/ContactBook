@@ -6,8 +6,11 @@ use App\Entity\Contact;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 
 class ContactType extends AbstractType
 {
@@ -17,13 +20,8 @@ class ContactType extends AbstractType
             ->add('name')
             ->add('phoneNumber')
             ->add('email')
-            ->add('photoFilename')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('username', EntityType::class, [
-                'class' => User::class,
-'choice_label' => 'id',
-            ])
+            ->add('other')
+
         ;
     }
 

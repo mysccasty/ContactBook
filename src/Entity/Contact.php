@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ContactRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
@@ -22,8 +23,6 @@ class Contact
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $photoFilename = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -34,6 +33,9 @@ class Contact
     #[ORM\ManyToOne(inversedBy: 'contacts')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $username = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $other = null;
 
     public function getId(): ?int
     {
@@ -76,18 +78,6 @@ class Contact
         return $this;
     }
 
-    public function getPhotoFilename(): ?string
-    {
-        return $this->photoFilename;
-    }
-
-    public function setPhotoFilename(?string $photoFilename): static
-    {
-        $this->photoFilename = $photoFilename;
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
@@ -120,6 +110,18 @@ class Contact
     public function setUsername(?User $username): static
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function getOther(): ?string
+    {
+        return $this->other;
+    }
+
+    public function setOther(?string $other): static
+    {
+        $this->other = $other;
 
         return $this;
     }
