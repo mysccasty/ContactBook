@@ -18,12 +18,13 @@
 <body>
 {% block body %}{% endblock %}
     {% if app.user %}
-        <div class="container text-end">
-            <form method="get" action="{{ path('app_logout') }}">
-                <button class="btn btn-lg btn-primary" type="submit">
-                    Log out!
-                </button>
-            </form>
+
+        <div class="container text-end" style="margin-top: 1.5%">
+            <a
+                    class="btn btn-outline-success"
+                    href="{{ path('app_logout') }}">
+                Log out
+            </a>
         </div>
 
     {% endif %}

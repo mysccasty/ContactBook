@@ -19,7 +19,7 @@
 
             {% if app.user %}
                 <div class="alert alert-success" role="alert">
-                    You are logged in as {{ app.user.userIdentifier }}. <a href="{{ path('app_logout') }}">Logout</a>
+                    You are logged in as {{ app.user.userIdentifier }}.
                 </div>
             {% else %}
 
@@ -34,10 +34,11 @@
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
     </div>
-    <br>
-    <div class="container">
-    <h1 class="h3 mb-3 font-weight-normal">New user?</h1>
-        <button onclick="document.location='{{ path('app_register') }}'" class="btn btn-lg btn-primary">Sign up</button>
+    <div class="container" style="margin-top: 1.5%">
+        <h1 class="h3 mb-3 font-weight-normal">New user?</h1>
+        <a class="btn btn-outline-success" href="{{ path('app_register') }}">
+            Sign up
+        </a>
     </div>
     {% endif %}
 {% endblock %}
