@@ -16,11 +16,15 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class ContactController extends AbstractController
 {
     #[Route('/', name: 'app_contact_index', methods: ['GET'])]
-    public function index(ContactRepository $contactRepository, UserInterface $user): Response
+    public function index(ContactRepository $contactRepository, UserInterface $user, Request $request): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $offset = max(0, $request->query->getInt('offset', 0));
+        $paginator = $contactRepository->getContactPaginator($user, $offset);
         return $this->render('contact/index.html.twig', [
-            'contacts' => $contactRepository->findBy(['username' => $user]),
+            'contacts' => $paginator,
+            'previous' => $offset - ContactRepository::PAGINATOR_PER_PAGE,
+            'next' => min(count($paginator), $offset + ContactRepository::PAGINATOR_PER_PAGE),
         ]);
     }
 

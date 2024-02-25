@@ -54,6 +54,12 @@
                         </tr>
                     {% endfor %}
                 </table>
+                {% if previous >= 0 %}
+                    <a class="btn btn-outline-info" href="{{ path('app_contact_index', { offset: previous }) }}">Previous</a>
+                {% endif %}
+                {% if next < contacts|length %}
+                    <a class="btn btn-outline-success" href="{{ path('app_contact_index', { offset: next }) }}">Next</a>
+                {% endif %}
             </div>
         </div>
     </div>
