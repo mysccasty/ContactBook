@@ -31,6 +31,10 @@ class Contact
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'contacts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $username = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +108,18 @@ class Contact
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getUsername(): ?User
+    {
+        return $this->username;
+    }
+
+    public function setUsername(?User $username): static
+    {
+        $this->username = $username;
 
         return $this;
     }
